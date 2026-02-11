@@ -2,6 +2,7 @@
 
 int list_process_directories(void) {
     // TODO: Open the /proc directory using opendir()
+    DIR *dir = opendir("/proc");
     // TODO: Check if opendir() failed and print error message
 
     // TODO: Declare a struct dirent pointer for directory entries
