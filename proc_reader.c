@@ -17,7 +17,7 @@ int list_process_directories(void) {
     while ((entry = readdir(dir)) != NULL) {
         if(is_number(entry -> d_name))
         {
-            printf("PID: %s\n", entry->d_name);
+            printf("%-8s %-20s\n", entry -> d_name, "process");
             process_count++;
         }
     }
