@@ -70,7 +70,7 @@ int show_system_info(void) {
         return -1;
     }
     char line[256];
-    while(fgets(line, sizeof(line), file) != NULL && line_count < MAX_LINES){
+    while(fgets(line, sizeof(line), cpuinfo) != NULL && line_count < MAX_LINES){
         printf("%s", line);
         line_count++;
     }
