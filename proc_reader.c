@@ -149,17 +149,17 @@ int read_file_with_library(const char* filename) {
      FILE *pointer;
     char buffer[256];
 
-    file = fopen(pointer, "r");
-    if (file == NULL) {
+    pointer = fopen(filename, "r");
+    if (pointer == NULL) {
         perror("fopen failed");
         return -1;
     }
     
-    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+    while (fgets(buffer, sizeof(buffer), pointer) != NULL) {
         printf("%s", buffer);
     }
 
-    if (fclose(file) != 0) {
+    if (fclose(pointer) != 0) {
         perror("fclose failed");
         return -1;
     }
