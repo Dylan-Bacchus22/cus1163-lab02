@@ -2,7 +2,7 @@
 
 int list_process_directories(void) {
     DIR *dir = opendir("/proc");
-      if (proc_dir == NULL) {
+      if (dir == NULL) {
         perror("opendir failed");
         return -1;
       }
@@ -64,13 +64,13 @@ int show_system_info(void) {
 
     printf("\n--- CPU Information (first %d lines) ---\n", MAX_LINES);
 
-    FILE *file = fopen("/proc/cpuinfo", "r");
+    FILE *cpuinfo = fopen("/proc/cpuinfo", "r");
     if(cpuinfo == NULL) {
         perror("fopen /proc/cpuinfo failed");
         return -1;
     }
     char line[256];
-    while(fgets(line, sizeof(line), file) != NULL && line_count < MAX_LENGTH){
+    while(fgets(line, sizeof(line), file) != NULL && line_count < MAX_LINES){
         printf("%s", line);
         line_count++;
     }
@@ -81,7 +81,7 @@ int show_system_info(void) {
     printf("\n--- Memory Information (first %d lines) ---\n", MAX_LINES);
 
 
-    FILE *file = fopen("/proc/meminfo", "r");
+    FILE *meminfo = fopen("/proc/meminfo", "r");
     if(meminfo == NULL)
     {
         perror("fopen /proc/meminfo failed");
@@ -120,7 +120,7 @@ int read_file_with_syscalls(const char* filename) {
     char buffer[256];
     ssize_t bytes_read;
     
-    fd = open(path, O_RDONLY);
+    fd = open(filename, O_RDONLY);
     if (fd == -1) {
         perror("open failed");
         return -1;
@@ -149,7 +149,7 @@ int read_file_with_library(const char* filename) {
      FILE *file;
     char buffer[256];
 
-    file = fopen(path, "r");
+    file = fopen(file, "r");
     if (file == NULL) {
         perror("fopen failed");
         return -1;
