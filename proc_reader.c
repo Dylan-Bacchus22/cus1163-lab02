@@ -149,7 +149,7 @@ int read_file_with_library(const char* filename) {
      FILE *pointer;
     char buffer[256];
 
-    file fopen(pointer, "r");
+    file = fopen(pointer, "r");
     if (file == NULL) {
         perror("fopen failed");
         return -1;
