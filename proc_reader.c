@@ -146,10 +146,10 @@ int read_file_with_syscalls(const char* filename) {
 }
 
 int read_file_with_library(const char* filename) {
-     FILE *file;
+     FILE *pointer;
     char buffer[256];
 
-    file = fopen(file, "r");
+    file fopen(pointer, "r");
     if (file == NULL) {
         perror("fopen failed");
         return -1;
