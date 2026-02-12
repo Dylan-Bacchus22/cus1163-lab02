@@ -34,23 +34,20 @@ int list_process_directories(void) {
 int read_process_info(const char* pid) {
     char filepath[256];
 
-    // TODO: Create the path to /proc/[pid]/status using snprintf()
+  
     snprintf(filepath, sizeof(filepath), "/proc/%s/status", pid);
     printf("\n--- Process Information for PID %s ---\n", pid);
 
-    // TODO: Call read_file_with_syscalls() to read the status file
+    
      if (read_file_with_syscalls(filepath) == -1) {
         fprintf(stderr, "Failed to read %s\n", filepath);
         return -1;
     }
-    // TODO: Check if the function succeeded
     
-    // TODO: Create the path to /proc/[pid]/cmdline using snprintf()
     snprintf(filepath, sizeof(filepath), "/proc/%s/cmdline", pid);
     printf("\n--- Command Line ---\n");
 
-    // TODO: Call read_file_with_syscalls() to read the cmdline file
-    // TODO: Check if the function succeeded
+
     if (read_file_with_syscalls(filepath) == -1) {
         fprintf(stderr, "Failed to read %s\n", filepath);
         return -1;
@@ -83,23 +80,19 @@ int show_system_info(void) {
     }
     printf("\n--- Memory Information (first %d lines) ---\n", MAX_LINES);
 
-    // TODO: Open /proc/meminfo using fopen() with "r" mode
+
     FILE *file = fopen("/proc/meminfo", "r");
-    // TODO: Check if fopen() failed
     if(meminfo == NULL)
     {
         perror("fopen /proc/meminfo failed");
         return -1;
     }
-    // TODO: Read lines using fgets() in a loop, limit to MAX_LINES
     while (fgets(line, sizeof(line), meminfo) != NULL &&
            line_count < MAX_LINES) {
         printf("%s", line);
         line_count++;
     }
-    // TODO: Print each line
-    // TODO: Close the file using fclose()
-    if(fclose(meminfo) != 0)
+    if(fclose(meminfo) != 0) 
     {
         perror("fclose /proc/meminfo failed");
         return -1;
